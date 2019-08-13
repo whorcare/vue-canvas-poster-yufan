@@ -39,7 +39,7 @@ export default {
   methods: {
     // 初始化initCanvas
     initCanvas() {
-      if (this.drawData.width || this.drawData.height || this.drawData.views.length === 0) {
+      if (!this.drawData.width || !this.drawData.height || this.drawData.views.length === 0) {
         return;
       }
       this.$refs.canvas.width = this.drawData.width;
@@ -72,25 +72,29 @@ export default {
     drawImg(data) {
       return new Promise((resolve) => {
         const {
-          url, top, left, width, height, borderRadius = 0, borderWidth = 0, borderColor = 'rgba(255,255,255,0)',
+          url, top = 0, left = 0, width = 0, height = 0, borderRadius = 0, borderWidth = 0, borderColor = 'rgba(255,255,255,0)',
         } = data;
         this.ctx.save();
         const img = new Image();
         img.crossOrigin = 'anonymous';
         if (borderRadius > 0) {
           img.addEventListener('load', () => {
-            this.drawRadiusRect(top, left, width, height, borderRadius, borderWidth, borderColor);
+            this.drawRadiusRect(left, top, width, height, borderRadius, borderWidth, borderColor);
             this.ctx.clip();
             this.ctx.drawImage(img, left, top, width, height);
             this.ctx.restore();
-            resolve();
+            setTimeout(() => {
+              resolve();
+            }, 50);
           });
         } else {
           img.addEventListener('load', () => {
             this.ctx.drawImage(img, left, top, width, height);
           });
           this.ctx.restore();
-          resolve();
+          setTimeout(() => {
+            resolve();
+          }, 100);
         }
         img.src = url;
       });
@@ -115,7 +119,7 @@ export default {
     },
     // drawText
     drawText({
-      top, left, fontSize, color, baseLine, textAlign = 'left', content, opacity = 1,
+      top = 0, left = 0, fontSize = 16, color = '#000', baseLine = 'bottom', textAlign = 'left', content, opacity = 1,
       width, lineNum = 1, lineHeight = 0, fontWeight = 'normal', fontStyle = 'normal', fontFamily = 'Microsoft YaHei',
     }) {
       this.ctx.save();
@@ -163,7 +167,7 @@ export default {
     },
     // drawLine
     drawLine({
-      startX, startY, endX, endY, color = '#000', width, lineCap = 'butt',
+      startX, startY, endX, endY, color = '#000', width = 1, lineCap = 'butt',
     }) {
       this.ctx.save();
       this.ctx.beginPath();
@@ -223,6 +227,7 @@ export default {
         // 画线
         this.ctx.save();
         this.ctx.globalAlpha = opacity;
+        console.log(borderColor);
         this.ctx.fillStyle = borderColor;
         this.ctx.lineWidth = borderWidth;
         if (borderRadius > 0) {

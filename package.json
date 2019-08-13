@@ -1,6 +1,6 @@
 {
   "name": "vue-canvas-poster-yufan",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "基于vue快速简单通过canvas动态生成海报的组件应用",
   "private": false,
   "main": "lib/vue-canvas-poster-yufan.umd.min.js",
