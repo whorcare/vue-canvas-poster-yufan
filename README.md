@@ -1,24 +1,24 @@
 # vue-canvas-poster-yufan
 vue-canvas-poster-yufan是一个基于vue+canvas通过简单的数据生成复杂canvas图片的组件
-#生成效果
+# 生成效果
 ![生成一个简单海报图片](https://3img.evente.cn/89/24/c5/2f8bd4af2030c57438fbdb8735.jpg?imageView2/2/w/740)
-#安装
+# 安装
 ```
 npm i vue-canvas-poster-yufan
 ```
-#使用组件
-#####注册
+# 使用组件
+##### 注册
 ```
 // 全局
 import canvasPoster from 'vue-canvas-poster-yufan'
 Vue.use(canvasPoster)
 ```
-#####使用
+##### 使用
 ```
 // 页面
 <canvas-poster :drawData="drawData" @success="success"></canvas-poster>
 ```
-#API
+# API
 ### drawData（数据）
 属性 | 含义 |  类型 |默认值 | 可选值 |是否必填
 ---|---|---|---|---|---
