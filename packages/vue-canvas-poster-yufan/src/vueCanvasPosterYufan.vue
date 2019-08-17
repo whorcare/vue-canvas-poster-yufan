@@ -227,7 +227,6 @@ export default {
         // 画线
         this.ctx.save();
         this.ctx.globalAlpha = opacity;
-        console.log(borderColor);
         this.ctx.fillStyle = borderColor;
         this.ctx.lineWidth = borderWidth;
         if (borderRadius > 0) {
