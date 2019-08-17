@@ -9,6 +9,7 @@
 </template>
 
 <script>
+import { setTimeout } from 'timers';
 
 export default {
   name: 'canvasPoster',
@@ -25,27 +26,23 @@ export default {
   },
   watch: {
     drawData: {
-      handler() {
-        this.$nextTick(() => {
-          this.initCanvas();
-        });
-      },
+      handler: 'initCanvas',
       deep: true,
+      immediate: true,
     },
-  },
-  mounted() {
-    this.initCanvas();
   },
   methods: {
     // 初始化initCanvas
     initCanvas() {
-      if (!this.drawData.width || !this.drawData.height || this.drawData.views.length === 0) {
-        return;
-      }
-      this.$refs.canvas.width = this.drawData.width;
-      this.$refs.canvas.height = this.drawData.height;
-      this.ctx = this.$refs.canvas.getContext('2d');
-      this.drawArr();
+      this.$nextTick(() => {
+        if (!this.drawData.width || !this.drawData.height || this.drawData.views.length === 0) {
+          return;
+        }
+        this.$refs.canvas.width = this.drawData.width;
+        this.$refs.canvas.height = this.drawData.height;
+        this.ctx = this.$refs.canvas.getContext('2d');
+        this.drawArr();
+      });
     },
     async drawArr() {
       if (this.drawData.backgroundColor) {
