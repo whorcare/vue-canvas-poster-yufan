@@ -2,7 +2,7 @@
 <template>
   <div class="canvas-poster">
     <!--eslint-disable-next-line-->
-    <canvas v-show="false"
+    <canvas v-show="debug"
             ref="canvas"
             class="canvas-poster-hidca"></canvas>
   </div>
@@ -21,7 +21,8 @@ export default {
   },
   data() {
     return {
-      ctx: '', // canvas 对象
+      ctx: '',
+      debug: false,
     };
   },
   watch: {
@@ -33,13 +34,14 @@ export default {
   },
   methods: {
     // 初始化initCanvas
-    initCanvas() {
+    initCanvas(drawData) {
       this.$nextTick(() => {
-        if (!this.drawData.width || !this.drawData.height || this.drawData.views.length === 0) {
+        if (!drawData.width || !drawData.height || drawData.views.length === 0) {
           return;
         }
-        this.$refs.canvas.width = this.drawData.width;
-        this.$refs.canvas.height = this.drawData.height;
+        this.$refs.canvas.width = drawData.width;
+        this.$refs.canvas.height = drawData.height;
+        this.debug = drawData.debug || false;
         this.ctx = this.$refs.canvas.getContext('2d');
         this.drawArr();
       });

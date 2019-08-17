@@ -16,7 +16,6 @@ export default {
         width: 360,
         height: 667,
         backgroundColor: '#fff',
-        debug: true,
         views: [
           {
             type: 'image',
@@ -98,7 +97,6 @@ export default {
         width: 360,
         height: 667,
         backgroundColor: '#f1f1f1',
-        debug: true,
         views: [
           {
             type: 'rect',
@@ -135,7 +133,6 @@ export default {
   },
   methods: {
     success(url) {
-      console.log(url);
       this.imgSrc = url;
     },
     success2(url) {
