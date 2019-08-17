@@ -4,6 +4,7 @@
   "description": "基于vue快速简单通过canvas动态生成海报的组件应用",
   "private": false,
   "main": "lib/vue-canvas-poster-yufan.umd.min.js",
+  "author": "yufan <18766850824@163.com>",
   "keywords": [
     "vue-canvas-poster-yufan",
     "vue canvas",

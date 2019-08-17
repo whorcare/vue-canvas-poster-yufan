@@ -29,14 +29,16 @@ Vue.use(canvasPoster)
         backgroundColor: '#fff',
         debug: true,
         views: [
+          // 绘制本地图片
           {
             type: 'image',
-            url: require('./assets/bold.png'),
+            url: require('./assets/bold.png'), // 远程图片可以直接改为图片地址
             top: 0,
             left: 0,
             width: 360,
             height: 667,
           },
+          // 绘制带圆角+边框的图片
           {
             type: 'image',
             url: require('./assets/header.jpg'),
@@ -48,6 +50,7 @@ Vue.use(canvasPoster)
             borderWidth: 2,
             borderColor: '#f0efefea',
           },
+          // 绘制文字
           {
             type: 'text',
             content: 'vue-canvas-poster-yufan简单快速的绘制canvas海报~~这是一段比较长的标题文字',
@@ -61,6 +64,7 @@ Vue.use(canvasPoster)
             lineHeight: 20,
             baseLine: 'top',
           },
+          // 绘制一条分割线
           {
             type: 'line',
             color: '#999',
@@ -71,6 +75,7 @@ Vue.use(canvasPoster)
             width: 2,
             lineCap: 'round',
           },
+          // 绘制一个简易矩形
           {
             type: 'rect',
             width: 200,
@@ -79,10 +84,7 @@ Vue.use(canvasPoster)
             y: 50,
             paddingLeft: 10,
             paddingRight: 10,
-            borderWidth: 2,
             backgroundColor: '#fff',
-            borderColor: 'red',
-            borderRadius: 0,
           },
       }
 ```
