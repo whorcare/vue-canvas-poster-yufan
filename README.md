@@ -91,7 +91,7 @@ Vue.use(canvasPoster)
 
   </details>
 
-#API
+# API
 ### drawData（数据）
 属性 | 含义 |  类型 |默认值 | 是否必填
 ---|---|---|---|---
