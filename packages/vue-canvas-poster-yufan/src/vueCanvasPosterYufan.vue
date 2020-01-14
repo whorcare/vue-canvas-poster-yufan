@@ -119,11 +119,11 @@ export default {
     // drawText
     drawText({
       top = 0, left = 0, fontSize = 16, color = '#000', baseLine = 'bottom', textAlign = 'left', content, opacity = 1,
-      width, lineNum = 1, lineHeight = 0, fontWeight = 'normal', fontStyle = 'normal', fontFamily = 'Microsoft YaHei',
+      width, lineNum = 1, lineHeight = 0, fontWeight = 'normal', fontFamily = 'Microsoft YaHei',
     }) {
       this.ctx.save();
       this.ctx.beginPath();
-      this.ctx.font = `${fontStyle} ${fontWeight} ${fontSize}px ${fontFamily}`;
+      this.ctx.font = `normal ${fontWeight} ${fontSize}px ${fontFamily}`;
       this.ctx.globalAlpha = opacity;
       this.ctx.textAlign = textAlign;
       this.ctx.textBaseline = baseLine;

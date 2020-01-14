@@ -188,7 +188,7 @@ success(src) {
 [给我star~](https://github.com/whorcare/vue-canvas-poster-yufan)
 
 ### 交流
-##### 有什么意见,或者bug 或者想一起开发vue-canvas-poster-yufan
+##### 有什么意见,或者bug 或者想一起开发vue-canvas-poster-yufan（备注:github）
 ![我的微信](https://0img.evente.cn/0f/41/65/8ad030fc5d9f82f6345b3d6e7c.jpg?imageView2/2/w/220)
 
 ### ISS

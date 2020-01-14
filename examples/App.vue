@@ -51,7 +51,7 @@ export default {
           },
           {
             type: 'text',
-            content: 'xxxx-xx-xx: xx:xx:xx',
+            content: '2020年1月14日 12:30:00',
             fontSize: 14,
             color: '#f7f7f7',
             textAlign: 'center',
