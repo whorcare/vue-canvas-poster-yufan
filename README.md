@@ -184,6 +184,9 @@ success(src) {
 - 可选类型图片导出
 - ...
 
+### 版本迭代
+- v0.1.14 修复了自定义字体加载无效的bug
+
 ### 如果你觉得这个项目有趣 不妨给个star~ (҂‾ ▵‾)σ(˚▽˚’!)/
 [给我star~](https://github.com/whorcare/vue-canvas-poster-yufan)
 
