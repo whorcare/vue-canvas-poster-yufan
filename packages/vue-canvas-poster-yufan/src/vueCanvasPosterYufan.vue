@@ -123,7 +123,6 @@ export default {
       this.ctx.save();
       this.ctx.beginPath();
       this.ctx.font = `normal ${fontWeight} ${fontSize}px ${fontFamily}`;
-      console.log(fontFamily);
       this.ctx.globalAlpha = opacity;
       this.ctx.textAlign = textAlign;
       this.ctx.textBaseline = baseLine;
@@ -254,7 +253,7 @@ export default {
       padding = 5, // 是否有边距 0 为 没有
     }) {
       if (text === '') {
-        console.warn('您设置的二维码 text 字段内容不能为空');
+        console.warn('您设置的二维码 text 字段内容不能为空'); // eslint-disable-line
       } else {
         this.$refs.canvasCodeDom.innerHTML = ''; // 重置
         if (padding !== 0) { // 如果没有边距
