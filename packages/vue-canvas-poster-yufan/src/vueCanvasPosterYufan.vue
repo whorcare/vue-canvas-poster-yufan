@@ -5,11 +5,14 @@
     <canvas v-show="debug"
             ref="canvas"
             class="canvas-poster-hidca"></canvas>
+    <div ref="canvasCodeDom" v-show="debug"></div>
   </div>
 </template>
 
 <script>
 import { setTimeout } from 'timers';
+
+const QRcode = require('qrcodejs2');
 
 export default {
   name: 'canvasPoster',
@@ -63,6 +66,8 @@ export default {
           this.drawBlock(this.drawData.views[i]);
         } else if (this.drawData.views[i].type === 'line') {
           this.drawLine(this.drawData.views[i]);
+        } else if (this.drawData.views[i].type === 'qcode') {
+          this.drawQcode(this.drawData.views[i]);
         }
       }
       this.$emit('success', this.$refs.canvas.toDataURL('image/jpeg'));
@@ -75,27 +80,21 @@ export default {
         } = data;
         this.ctx.save();
         const img = new Image();
-        img.crossOrigin = 'anonymous';
-        if (borderRadius > 0) {
-          img.addEventListener('load', () => {
+        img.setAttribute('crossorigin', 'anonymous');
+        img.src = url;
+        img.onload = () => {
+          if (borderRadius > 0) {
             this.drawRadiusRect(left, top, width, height, borderRadius, borderWidth, borderColor);
             this.ctx.clip();
             this.ctx.drawImage(img, left, top, width, height);
-            this.ctx.restore();
-            setTimeout(() => {
-              resolve();
-            }, 50);
-          });
-        } else {
-          img.addEventListener('load', () => {
+          } else {
             this.ctx.drawImage(img, left, top, width, height);
-          });
+          }
           this.ctx.restore();
           setTimeout(() => {
             resolve();
           }, 100);
-        }
-        img.src = url;
+        };
       });
     },
     // drawRadiusRect
@@ -124,6 +123,7 @@ export default {
       this.ctx.save();
       this.ctx.beginPath();
       this.ctx.font = `normal ${fontWeight} ${fontSize}px ${fontFamily}`;
+      console.log(fontFamily);
       this.ctx.globalAlpha = opacity;
       this.ctx.textAlign = textAlign;
       this.ctx.textBaseline = baseLine;
@@ -240,6 +240,43 @@ export default {
 
       if (text) {
         this.drawText(Object.assign(text, { x: textX, y: textY }));
+      }
+    },
+    // 绘制二维吗
+    drawQcode({
+      text = '', // 绘制的文字或者是url
+      width = 200, // 宽度
+      height = 200, // 高度
+      top = 0, // 最上边
+      left = 0, // 左边
+      background = '#f0f', // 背景色
+      foreground = '#ff0', // 块颜色
+      padding = 5, // 是否有边距 0 为 没有
+    }) {
+      if (text === '') {
+        console.warn('您设置的二维码 text 字段内容不能为空');
+      } else {
+        this.$refs.canvasCodeDom.innerHTML = ''; // 重置
+        if (padding !== 0) { // 如果没有边距
+          this.drawBlock({
+            x: left - padding,
+            y: top - padding,
+            width: width + (padding * 2),
+            height: height + (padding * 2),
+            backgroundColor: '#fff',
+          });
+        }
+        /* eslint-disable no-new */
+        new QRcode(this.$refs.canvasCodeDom, {
+          width,
+          height, // 高度
+          text, // 二维码内容
+          image: '',
+          correctLevel: QRcode.CorrectLevel.L,
+          background,
+          foreground,
+        });
+        this.ctx.drawImage(this.$refs.canvasCodeDom.querySelector('canvas'), left, top, width, height);
       }
     },
     /**

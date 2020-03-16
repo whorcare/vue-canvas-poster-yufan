@@ -64,6 +64,15 @@ Vue.use(canvasPoster)
             lineHeight: 20,
             baseLine: 'top',
           },
+          // 绘制二维码
+          {
+            type: 'qcode',
+            text: 'https://github.com/whorcare/vue-canvas-poster-yufan',
+            top: 420,
+            left: 135,
+            width: 90,
+            height: 90,
+          },
           // 绘制一条分割线
           {
             type: 'line',
@@ -157,6 +166,18 @@ borderColor| 边框颜色 | |  否|
 borderRadius| 圆角 | 0| 否 |
 opacity| 透明度 | 1|  否|
 
+### qcode 字段（绘制图片）
+属性 | 含义 |  默认值 | 是否必填
+---|---|---|---
+text| 二维码内容（链接 或者 文字）  |" " | 是|
+top| 二维码距离顶部距离 | 0|  是|
+left| 二维码距离左边距离| 0|   是|
+width| 二维码宽度 | 200 |   是|
+height| 二维码高度 | 200 |    是|
+background| 背景色 | #fff |    否|
+foreground| 区块色 | #000 |    否|
+padding| 内边距 (0为无内边距） | 5 |   否 |
+
 ### 方法
 ```
 success(src) {
@@ -179,12 +200,12 @@ success(src) {
 
 ### 持续开发中的功能...
 - box-shadow 绘制阴影
-- QrCode 绘制二维码
 - Bezier curve 贝塞尔曲线
 - 可选类型图片导出
 - ...
 
 ### 版本迭代
+- v0.2.0  新增了二维码 & 修复了有时图片加载失败的bug
 - v0.1.14 修复了自定义字体加载无效的bug
 
 ### 如果你觉得这个项目有趣 不妨给个star~ (҂‾ ▵‾)σ(˚▽˚’!)/

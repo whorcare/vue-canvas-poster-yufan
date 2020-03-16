@@ -63,19 +63,8 @@ export default {
             baseLine: 'top',
           },
           {
-            type: 'image',
-            url: require('./assets/header.jpg'), //  eslint-disable-line
-            top: 58,
-            left: 165,
-            width: 30,
-            height: 30,
-            borderRadius: 5,
-            borderWidth: 2,
-            borderColor: '#f0efefea',
-          },
-          {
-            type: 'image',
-            url: require('./assets/code.png'), //  eslint-disable-line
+            type: 'qcode',
+            text: 'https://github.com/whorcare/vue-canvas-poster-yufan', //  eslint-disable-line
             top: 420,
             left: 135,
             width: 90,
@@ -118,7 +107,7 @@ export default {
             y: 50,
             paddingLeft: 10,
             paddingRight: 10,
-            borderWidth: 2,
+            borderWidth: 0,
             backgroundColor: '#fff',
             borderColor: 'red',
             borderRadius: 0,
